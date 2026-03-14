@@ -5,16 +5,19 @@ using namespace std;
 class Shape
 {
     protected:
-        int x,y;
+        int x, y;
 
     public:
+        //Constructor
         Shape(int x, int y)
         {
-            this->x = x;
+            this->x = x; //this refers to the object itself, used due to same names
             this->y = y;
         }
 
         virtual void display() = 0;
+
+        //Destructor
         virtual ~Shape(){}
 };
 
@@ -24,6 +27,7 @@ class Circle: public Shape
         int radius; //hidden from others
 
     public:
+    //Overloading constructor
         Circle(int x, int y, int r): Shape(x,y), radius(r){}
         void display() override
         {
@@ -37,6 +41,7 @@ class Triangle: public Shape
         int angle; //hidden from others
 
     public:
+    //Overloading constructor
         Triangle(int x, int y, int r): Shape(x,y), angle(r){}
         void display() override
         {
@@ -50,6 +55,7 @@ class Square: public Shape
         int area; //hidden from others
 
     public:
+        //Overloading constructor
         Square(int x, int y, int r): Shape(x,y), area(r){}
         void display() override
         {
