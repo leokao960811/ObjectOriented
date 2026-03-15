@@ -15,49 +15,49 @@ class Shape
             this->y = y;
         }
 
-        virtual void display() = 0;
+        virtual void display() = 0; //Base function 
 
-        //Destructor
+        //Destructora
         virtual ~Shape(){}
 };
 
-class Circle: public Shape
+class Circle: public Shape //Inherits Shape() class
 {
     private:
         int radius; //hidden from others
 
     public:
-    //Overloading constructor
+        //Constructor
         Circle(int x, int y, int r): Shape(x,y), radius(r){}
-        void display() override
+        void display() override //Overriding base function
         {
             cout << "Circle at ("<< x << ","<< y <<")\n Radius: " << radius << endl;
         }
 };
 
-class Triangle: public Shape
+class Triangle: public Shape //Inherits Shape() class
 {
     private:
         int angle; //hidden from others
 
     public:
-    //Overloading constructor
+        //Constructor
         Triangle(int x, int y, int r): Shape(x,y), angle(r){}
-        void display() override
+        void display() override //Overriding base function
         {
             cout << "Triangle at ("<< x << ","<< y <<")\n Angle: " << angle << endl;
         }
 };
 
-class Square: public Shape
+class Square: public Shape //Inherits Shape() class
 {
     private:
         int area; //hidden from others
 
     public:
-        //Overloading constructor
+        //Constructor
         Square(int x, int y, int r): Shape(x,y), area(r){}
-        void display() override
+        void display() override //Overriding base function
         {
             cout << "Square at ("<< x << ","<< y <<")\n Area: " << area << endl;
         }
@@ -68,7 +68,7 @@ int main()
 
     vector <Shape*> shapes;
 
-    
+    //"Database" setup
     shapes.push_back(new Square(5, 5, 25));
     shapes.push_back(new Triangle(2, 3, 60));
     shapes.push_back(new Circle(9, 8, 10));
