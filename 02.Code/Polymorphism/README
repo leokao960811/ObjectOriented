@@ -1,0 +1,11 @@
+This program will give you a hint at how polymorphism can allow code that has been previously compiled to continue to run without change in the presence of new subclasses. No recompilation required and, as you will see, no need to stop the running program!
+
+Compile the code in this directory with "javac *.java" and then run it with "java testAnimals".
+
+Then in another window, copy the file Wolf.java into the directory and compile it with "javac Wolf.java".
+
+Change the file "animals.txt" to include the word Wolf on one of its lines
+
+Watch the window where the program is running to see that the Wolf was dynamically added to the zoo and is now included in the program's output!!
+
+Kill the program with Control-C.
