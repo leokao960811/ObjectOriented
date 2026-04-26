@@ -6,12 +6,15 @@ using namespace std;
 
 class Inventory;
 class RentalLog;
+class RentService;
 class Customer;
 
 class Store {
 private:
     Inventory* inventory;
     RentalLog* rentalLog;
+    RentService* rentService;
+
     vector<Customer*> customers;
     int currentDay;
 
@@ -26,7 +29,6 @@ public:
     void simulateOneDay();
 
     Customer* selectRandomCustomer();
-    void createRental(Customer* customer);
 
     void generateReport() const;
 };
