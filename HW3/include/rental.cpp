@@ -12,7 +12,7 @@ Rental::Rental(Customer* customer, vector<Video*> videos, int rentalDays, int st
 
     calculateTotalPrice();
  }
-Rental::~Rental() {}
+
 
 Customer* Rental::getCustomer() const {return customer;}
 vector<Video*> Rental::getVideos() const {return videos;}

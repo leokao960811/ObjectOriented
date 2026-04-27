@@ -4,7 +4,13 @@
 
 Customer::Customer(string name, string type) : name(name), type(type) {}
 Customer::~Customer() {}
+string Customer::getName() const {
+    return name;
+}
 
+string Customer::getType() const {
+    return type;
+}
 
 BreezyCustomer::BreezyCustomer(string name): Customer(name, "Breezy") {}
 
@@ -17,21 +23,20 @@ int BreezyCustomer::getRentalLimit() const {
 }
 
 RegularCustomer::RegularCustomer(string name): Customer(name, "Regular") {}
-
+HoarderCustomer::HoarderCustomer(string name)
+    : Customer(name, "Hoarder") {}
 int RegularCustomer::getRentalDays() const {
-    return (rand() % 3) + 1;
+    return (rand() % 3) + 3; // 3~5 days
 }
 
 int RegularCustomer::getRentalLimit() const {
-    return (rand() % 5) + 3;
+    return (rand() % 3) + 1; // 1~3 videos
 }
 
-HoarderCustomer::HoarderCustomer(string name): Customer(name, "Hoarder") {}
-
 int HoarderCustomer::getRentalDays() const {
-    return 3;
+    return 7;
 }
 
 int HoarderCustomer::getRentalLimit() const {
-    return 7;
+    return 3;
 }

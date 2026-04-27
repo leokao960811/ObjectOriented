@@ -1,6 +1,6 @@
 #include "video.h"
 
-Video::Video(string title, string category, double pricePerDay) : title(title), category(category), pricePerDay(0.0){}
+Video::Video(string title, string category, double pricePerDay) : title(title), category(category), pricePerDay(pricePerDay), isAvailable(true){}
 Video::~Video() {}
 
 string Video::getTitle() const {return title;}
