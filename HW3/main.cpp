@@ -29,6 +29,32 @@ void printRental(Rental* rental) {
     cout << "-----------------------------" << endl;
 }
 
+bool canCustomerRentToday(Customer* c, Inventory& inventory) {
+    int available = inventory.getAvailableVideoCount();
+
+    if (available == 0) {
+        return false;
+    }
+
+    if (c->getRemainingRentalLimit() <= 0) {
+        return false;
+    }
+
+    if (c->getType() == "Hoarder") {
+        return available >= 3 && c->canRent(3);
+    }
+
+    if (c->getType() == "Breezy") {
+        return available >= 1 && c->getRemainingRentalLimit() >= 1;
+    }
+
+    if (c->getType() == "Regular") {
+        return available >= 1 && c->getRemainingRentalLimit() >= 1;
+    }
+
+    return false;
+}
+
 int main() {
     srand(time(0));
 
@@ -79,6 +105,7 @@ int main() {
 
     // simulate 35 days
     for (int day = 1; day <= 35; day++) {
+        // Returns happen before the store opens.
         rentalLog.processReturns(day);
 
         int visitsToday = rand() % 6; // 0~5 customers per day
@@ -91,22 +118,22 @@ int main() {
             vector<Customer*> candidates;
 
             for (Customer* c : customers) {
-                if (c->getType() == "Hoarder" &&
-                    inventory.getAvailableVideoCount() < 3) {
-                    continue;
+                if (canCustomerRentToday(c, inventory)) {
+                    candidates.push_back(c);
                 }
-
-                candidates.push_back(c);
             }
 
             if (candidates.empty()) {
                 break;
             }
 
-            Customer* selected =
-                candidates[rand() % candidates.size()];
+            Customer* selected = candidates[rand() % candidates.size()];
 
-            rentService.createRental(selected, day);
+            Rental* rental = rentService.createRental(selected, day);
+
+            if (rental == nullptr) {
+                i--;
+            }
         }
     }
 

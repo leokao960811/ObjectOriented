@@ -8,6 +8,7 @@ class Customer {
 protected:
     string name;
     string type;
+    int currentRentedCount;
 
 public:
     Customer(string name, string type);
@@ -16,6 +17,12 @@ public:
     string getName() const;
     string getType() const;
 
+    int getCurrentRentedCount() const;
+    int getRemainingRentalLimit() const;
+    bool canRent(int count) const;
+    void addRentedCount(int count);
+    void removeRentedCount(int count);
+
     virtual int getRentalDays() const = 0;
     virtual int getRentalLimit() const = 0;
 };
@@ -23,7 +30,6 @@ public:
 class BreezyCustomer : public Customer {
 public:
     BreezyCustomer(string name);
-
     int getRentalDays() const override;
     int getRentalLimit() const override;
 };
@@ -31,7 +37,6 @@ public:
 class RegularCustomer : public Customer {
 public:
     RegularCustomer(string name);
-
     int getRentalDays() const override;
     int getRentalLimit() const override;
 };
@@ -39,7 +44,6 @@ public:
 class HoarderCustomer : public Customer {
 public:
     HoarderCustomer(string name);
-
     int getRentalDays() const override;
     int getRentalLimit() const override;
 };
