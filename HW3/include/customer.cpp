@@ -1,4 +1,4 @@
-#include "Customer.h"
+#include "customer.h"
 #include <cstdlib> // Needed for rand()
 
 
